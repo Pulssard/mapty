@@ -36,6 +36,7 @@ To run the Mapty project locally or deploy it to a server, follow these steps:
 - CSS3
 - JavaScript (ES6+)
 - Leaflet.js (for map functionality)
+- localStorage API(for storing data between sessions)
 
 ## Project Structure
 
@@ -48,7 +49,3 @@ The project directory structure is as follows:
 ## Credits
 
 This project is based on Jonas Schmedtmann's original Mapty project from his "The Complete JavaScript Course 2022: From Zero to Expert!" course on Udemy. Additional features were implemented for editing and deleting workouts, to personalize the project, and improve its functionality. 
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
