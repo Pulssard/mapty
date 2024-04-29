@@ -103,12 +103,11 @@ class App {
             })
     }
     _showForm(mapE, workout){
-        console.log(mapE)
         this.#mapEvent = mapE;
         if(workout) form.querySelector('.form__input--distance').value = workout.distance;
         if(workout) form.querySelector('.form__input--duration').value = workout.duration;
-        if(workout) form.querySelector('.form__input--cadence').value = workout.cadence;
-        if(workout) form.querySelector('.form__input--elevation').value = workout.elevation;
+        if(workout) form.querySelector('.form__input--cadence').value = workout.cadence || '';
+        if(workout) form.querySelector('.form__input--elevation').value = workout.elevation || '';
         form.classList.remove('hidden');
         inputDistance.focus();
     }
