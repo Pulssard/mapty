@@ -10,6 +10,7 @@ const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
 let editWorkout;
 let deleteWorkout;
+const resetButton = document.querySelector('.workout__reset');
 const resetWorkouts = document.querySelector('.reset');
 const mapContainer = document.querySelector('#map');
 let map, mapEvent;
@@ -75,7 +76,8 @@ class App {
         form.addEventListener('submit', this._newWorkout.bind(this));
         inputType.addEventListener('change', this._toggleElevationField);
         containerWorkouts.addEventListener('click', this._movePopup.bind(this));
-        
+        resetButton.addEventListener('click', this.reset.bind(this));
+        this.checkWorkouts();
     }
 
     _getPosition(){ 
@@ -169,7 +171,7 @@ class App {
         this._renderWorkout(workout);
 
         this._hideForm();
-        
+        this.checkWorkouts();
         //set local storage to all workouts
         this._setLocalStorage();
         
@@ -244,6 +246,7 @@ class App {
         `;
 
         form.insertAdjacentHTML('afterend', html);
+        
         editWorkout = document.querySelector('.edit');
         editWorkout.addEventListener('click', this._editWorkout.bind(this))
         deleteWorkout = document.querySelector('.delete');
@@ -295,8 +298,7 @@ class App {
         mapContainer.querySelector('.leaflet-popup-pane').innerHTML = '';
         mapContainer.querySelector('.leaflet-marker-pane').innerHTML = '';
         mapContainer.querySelector('.leaflet-shadow-pane').innerHTML = '';
-        this._getLocalStorage();
-
+        this.checkWorkouts();
         this.#workouts.forEach(work => {
             this._renderWorkoutMarker(work);
         })
@@ -311,8 +313,13 @@ class App {
     } 
 
     reset() {
-        localStorage.removeItem('workouts');
-        location.reload();
+        this.#workouts = [];
+        this._setLocalStorage();
+        this.updateWorkouts();
+    }
+
+    checkWorkouts(){
+        this.#workouts.length > 0 ? resetButton.style.visibility = 'visible' : resetButton.style.visibility = 'hidden' ;
     }
 }
 
