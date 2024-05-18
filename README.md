@@ -1,6 +1,8 @@
 # Mapty - Workout Tracking App
 
 Mapty is a workout tracking application that allows users to record workouts (running and cycling) and visualize them on a map. This project is based on Jonas Schmedtmann's original version with additional features for editing and deleting workouts without refreshing the page (using DOM Manipulation).
+## Demo
+https://maptis.netlify.app/
 
 ## Features
 
