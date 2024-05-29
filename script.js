@@ -265,6 +265,7 @@ class App {
             },
         });
     }
+
     //preserving the data between sessons using local storage API.
     _setLocalStorage() {
         localStorage.setItem('workouts', JSON.stringify(this.#workouts));
@@ -301,15 +302,17 @@ class App {
         this.checkWorkouts();
         this.#workouts.forEach(work => {
             this._renderWorkoutMarker(work);
-        })
+        });
     }
 
     _editWorkout(e) {
-            const id = e.target.closest('.workout').dataset.id;
-            const workout = this.#workouts.find(work => work.id === id);
-            console.log(workout)
-            this._showForm(this.#mapEvent, workout);
-            this.deleteWorkout(e);
+        const id = e.target.closest('.workout').dataset.id;
+        const workout = this.#workouts.find(work => work.id === id);
+        this._showForm(this.#mapEvent, workout);
+        this.deleteWorkout(e);
+        this.#workouts.forEach(work => {
+            this._renderWorkout(work);
+        });
     } 
 
     reset() {
